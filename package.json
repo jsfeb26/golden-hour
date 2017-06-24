@@ -1,0 +1,19 @@
+{
+  "name": "reactriot2017-goldenhour",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Hackbit/reactriot2017-goldenhour.git",
+  "author": "Jason Stinson <jsfeb26@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start -p 8000"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "next": "^2.4.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
