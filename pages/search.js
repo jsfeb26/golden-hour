@@ -10,7 +10,7 @@ const Search = ({ photos }) => (
     <div>
       {
         photos.map((photo) => (
-          <div>
+          <div key={photo.id}>
             <div>{photo.name}</div>
             <div><img src={photo.image_url} /></div>
           </div>
@@ -21,7 +21,8 @@ const Search = ({ photos }) => (
 );
 
 Search.getInitialProps = async () => {
-  const res = await fetch(GET_PHOTOS);
+  console.log(`${GET_PHOTOS}${CONSUMER_KEY_500PX}`);
+  const res = await fetch(`${GET_PHOTOS}${CONSUMER_KEY_500PX}`);
   const json = await res.json();
   return {
     photos: json.photos
