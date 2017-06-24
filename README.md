@@ -1,13 +1,15 @@
 # Golden Hour
 
 ### Host with Now
-[View](https://reactriot2017-goldenhour-rgbbfiqsju.now.sh)
+[View](https://reactriot2017-goldenhour-lbphhxxjlh.now.sh)
 
 ### Tech Used
 * [next.js](https://github.com/zeit/next.js/)
 * [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)
 * [react](https://github.com/facebook/react)
 * [500px API](https://500px.com/)
+* [babel-plugin-transform-define](https://github.com/FormidableLabs/babel-plugin-transform-define)
+* [dotenv](https://github.com/motdotla/dotenv)
 
 ### To Run in development
 ```
