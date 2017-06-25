@@ -10,6 +10,7 @@ const Container = styled.div`
   background-size: contain;
   width: 60px;
   height: 60px;
+  cursor: pointer;
   &:hover {
     transform: scale(2.0, 2.0);
     transform-origin: bottom center;
