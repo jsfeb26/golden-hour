@@ -11,10 +11,33 @@ export default class MyDocument extends Document {
         <Head>
           <title>Golden Hour</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
+          <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
           {styleTags}
           <style>
             {`
               @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+              *:focus {
+                outline: none;
+              }
+              ::-webkit-input-placeholder { /* Chrome */
+                opacity: 0.5;
+              }
+              :-ms-input-placeholder { /* IE 10+ */
+                opacity: 0.5;
+              }
+              ::-moz-placeholder { /* Firefox 19+ */
+                opacity: 0.5;
+              }
+              :-moz-placeholder { /* Firefox 4 - 18 */
+                opacity: 0.5;
+              }
+
+              .search-button:hover {
+                background-color: gray;
+              }
+
               html, body {
                 height: 100%;
                 margin: 0;

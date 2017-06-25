@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import styled from 'styled-components';
 import get from 'lodash.get';
 
+import SearchHeader from '../components/search-header';
 import Map from '../components/map';
 import PhotoList from '../components/photo-list';
 import endpoints from '../endpoints.js';
@@ -43,16 +44,49 @@ const ListContainer = styled.div`
 
 class Search extends Component {
 
+  static async getInitialProps (req) {
+    const term = get(req, 'query.term') || '';
+
+    if (term) {
+      const url = endpoints.GEOCODE(term);
+      const res = await fetch(url);
+      const json = await res.json();
+      const location = get(json, 'results[0].geometry.location') || {};
+
+      return {
+        centerLat: location.lat,
+        centerLng: location.lng
+      };
+    }
+
+    return {};
+  }
+
   constructor(props) {
     super(props);
+
+    const term = get(props, 'url.query.term') || '';
 
     this.state = {
       photos: [],
       photoListHoverId: 0,
       markerHoverPhotoId: 0,
-      centerLat: 40.735998,
-      centerLng: -73.951323
+      term,
+      centerLat: props.centerLat || 40.735998,
+      centerLng: props.centerLng || -73.951323
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const term = get(nextProps, 'url.query.term');
+
+    if (term && this.state.term !== term) {
+      this._onSearch(term);
+    }
+  }
+
+  componentDidMount() {
+    this._onSearch(this.state.term);
   }
 
   _onBoundsChange = async (center, radius) => {
@@ -75,8 +109,8 @@ class Search extends Component {
     this.setState(() => ({ markerHoverPhotoId: photoId }));
   }
 
-  _onSearch = async () => {
-    const url = endpoints.GEOCODE('San Diego');
+  _onSearch = async (term) => {
+    const url = endpoints.GEOCODE(term);
     const res = await fetch(url);
     const json = await res.json();
 
@@ -85,11 +119,11 @@ class Search extends Component {
   }
 
   render() {
-    const { photos, photoListHoverId, markerHoverPhotoId, centerLat, centerLng } = this.state;
+    const { photos, photoListHoverId, markerHoverPhotoId, term, centerLat, centerLng } = this.state;
 
     return (
       <PageContainer>
-        <Title onClick={this._onSearch}>Search</Title>
+        <SearchHeader onSearch={this._onSearch} term={term} />
         <ComponentContainer>
           <MapContainer>
             <Map
