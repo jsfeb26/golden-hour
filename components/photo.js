@@ -71,11 +71,11 @@ export default class Photo extends Component {
   }
 
   render() {
-    const { photo, markerHoverPhotoId, toggleHoverPhotoList } = this.props;
+    const { id, photo, markerHoverPhotoId, toggleHoverPhotoList } = this.props;
 
     if (photo.id === markerHoverPhotoId) {
       return (
-        <ListItemHover key={photo.id} onClick={this._openModal}>
+        <ListItemHover id={id} key={photo.id} onClick={this._openModal}>
           <Image src={photo.image_url} />
           <ItemInfo>
             <ItemTitle>{photo.name}</ItemTitle>

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import scrollTo from '../helper/scrollTo';
+
 const Container = styled.div`
   background-image: url(/static/bubble.png);
   background-repeat: no-repeat;
@@ -36,8 +38,17 @@ const Image = styled.img`
   left: 4px;
 `;
 
+const scrollIntoView = (photoId) => {
+  const parentOffest = document.getElementsByClassName("photoList")[0].offsetTop;
+  const selectedOffset = document.getElementById(photoId).offsetTop;
+  const scrollAmount = selectedOffset - parentOffest;
+
+  const container = document.getElementsByClassName("photoList")[0];
+  scrollTo(container, scrollAmount, 1000);
+};
+
 const Marker = ({ photo, isHover, toggleHoverPhotoMarker }) => (
-  <div>
+  <div onClick={() => scrollIntoView(`${photo.id}`)}>
     {isHover ?
       <HoverContainer>
         <Image src={photo.image_url} />

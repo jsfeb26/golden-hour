@@ -16,6 +16,7 @@ const PhotoList = ({ photos, toggleHoverPhotoList, markerHoverPhotoId }) => (
         photos.map((photo) => (
           <Photo
             key={photo.id}
+            id={`${photo.id}`}
             photo={photo}
             toggleHoverPhotoList={toggleHoverPhotoList}
             markerHoverPhotoId={markerHoverPhotoId}

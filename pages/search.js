@@ -135,7 +135,7 @@ class Search extends Component {
             />
           </MapContainer>
           {(photos && photos.length) &&
-            <ListContainer>
+            <ListContainer className="photoList">
               <PhotoList
                 photos={photos}
                 toggleHoverPhotoList={this._toggleHoverPhotoList}

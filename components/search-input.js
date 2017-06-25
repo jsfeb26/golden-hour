@@ -76,7 +76,7 @@ export default class SearchHeader extends Component {
       <SearchContainer>
         <SearchInputLabel>Location</SearchInputLabel>
         <SearchInput
-          placeholder="New York, NY..."
+          placeholder="New York, NY"
           value={this.state.term}
           onChange={this._onInputChange}
           onKeyPress={this._handleKeyPress}
