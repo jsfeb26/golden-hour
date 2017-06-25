@@ -35,7 +35,7 @@ export default class MyDocument extends Document {
               }
 
               .search-button:hover {
-                background-color: gray;
+                background-color: #EFCF7F;
               }
 
               html, body {
