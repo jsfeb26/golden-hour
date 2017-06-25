@@ -9,9 +9,10 @@
 * [react](https://github.com/facebook/react)
 * [google-map-react](https://github.com/istarkov/google-map-react)
 * [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)
+* [dotenv](https://github.com/motdotla/dotenv)
+* [babel-plugin-styled-components](https://github.com/styled-components/babel-plugin-styled-components)
 * [500px API](https://500px.com/)
 * [Google Maps API](https://developers.google.com/maps/)
-* [dotenv](https://github.com/motdotla/dotenv)
 
 ### To Run in development
 ```
