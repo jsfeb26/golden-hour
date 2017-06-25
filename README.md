@@ -5,10 +5,11 @@
 
 ### Tech Used
 * [next.js](https://github.com/zeit/next.js/)
-* [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)
+* [styled-components](https://github.com/styled-components/styled-components)
 * [react](https://github.com/facebook/react)
+* [google-map-react](https://github.com/istarkov/google-map-react)
+* [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)
 * [500px API](https://500px.com/)
-* [babel-plugin-transform-define](https://github.com/FormidableLabs/babel-plugin-transform-define)
 * [dotenv](https://github.com/motdotla/dotenv)
 
 ### To Run in development
