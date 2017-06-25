@@ -5,6 +5,7 @@ import Router from 'next/router';
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
+  flex-grow: 0;
 `;
 
 const SearchInput = styled.input`

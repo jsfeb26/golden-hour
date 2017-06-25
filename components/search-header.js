@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import SearchInput from '../components/search-input';
+import Link from 'next/link';
 
 const HeaderContainer = styled.div`
   padding: 18px 36px;
@@ -16,12 +17,15 @@ const ContentContainer = styled.div`
 const Logo = styled.img`
   width: 108px;
   height: 50px;
+  cursor: pointer;
 `;
 
 export default () => (
   <HeaderContainer>
     <ContentContainer>
-      <Logo src="/static/Logo.png" />
+      <Link href="/">
+        <Logo src="/static/Logo.png" />
+      </Link>
       <SearchInput />
     </ContentContainer>
   </HeaderContainer>
