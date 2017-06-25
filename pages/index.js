@@ -25,23 +25,29 @@ const Logo = styled.img`
 
 const SearchContainer = styled.div`
   display: inline-flex;
+  flex-direction: column;
   position: relative;
   align-self: center;
   padding-top: 100px;
+  align-items: center;
+`;
+const HelpInfo = styled.div`
+  width: 300px;
+  padding-bottom: 18px;
+  text-align: center;
+  font-size: 22px;
+  color: #F7F7F7;
 `;
 
 const BelowFoldContainer = styled.div`
   display: flex;
   justify-content: center;
   height: 500px;
+  padding: 27px;
 `;
 
 const SecondaryImage = styled.img`
-  position: relative;
-  width: 400px;
-  height: 250px;
-  top: 50px;
-  left: 200px;
+  width: 90%;
 `;
 
 export default () => (
@@ -52,10 +58,12 @@ export default () => (
         <Logo src="/static/Logo.png" />
       </Link>
       <SearchContainer>
+        <HelpInfo>Find the best locations for golden hour photography</HelpInfo>
         <SearchInput />
       </SearchContainer>
     </AboveFoldContainer>
     <BelowFoldContainer>
+      <SecondaryImage src="/static/secondary.png" />
     </BelowFoldContainer>
   </div>
 );
