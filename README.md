@@ -1,7 +1,7 @@
 # Golden Hour
 
 ### Host with Now
-[View](https://reactriot2017-goldenhour-lbphhxxjlh.now.sh)
+[Demo](http://goldenhour.2017.reactriot.com)
 
 ### Tech Used
 * [next.js](https://github.com/zeit/next.js/)
@@ -10,6 +10,7 @@
 * [google-map-react](https://github.com/istarkov/google-map-react)
 * [isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)
 * [500px API](https://500px.com/)
+* [Google Maps API](https://developers.google.com/maps/)
 * [dotenv](https://github.com/motdotla/dotenv)
 
 ### To Run in development
