@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import styled from 'styled-components';
 
 import Map from '../components/map';
+import PhotoList from '../components/photo-list';
 import endpoints from '../endpoints.js';
 
 const PageContainer = styled.div`
@@ -26,7 +27,7 @@ const MapContainer = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  width: 62%;
+  width: 55%;
   height: 100%;
 `;
 
@@ -34,7 +35,7 @@ const ListContainer = styled.div`
   position: absolute;
   right: 0;
   top: 0;
-  width: 38%;
+  width: 45%;
   height: 100%;
   overflow-y: scroll;
 `;
@@ -44,7 +45,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { photos: [] };
+    this.state = { photos: [], photoListHoverId: 0, markerHoverPhotoId: 0 };
   }
 
   _onBoundsChange = async (center, radius) => {
@@ -59,8 +60,16 @@ class Search extends Component {
     }
   }
 
+  _toggleHoverPhotoList = (photoId) => {
+    this.setState(() => ({ photoListHoverId: photoId }));
+  }
+
+  _toggleHoverPhotoMarker = (photoId) => {
+    this.setState(() => ({ markerHoverPhotoId: photoId }));
+  }
+
   render() {
-    const { photos } = this.state;
+    const { photos, photoListHoverId, markerHoverPhotoId } = this.state;
 
     return (
       <PageContainer>
@@ -69,19 +78,18 @@ class Search extends Component {
           <MapContainer>
             <Map
               onBoundsChange={this._onBoundsChange}
+              toggleHoverPhotoMarker={this._toggleHoverPhotoMarker}
+              photoListHoverId={photoListHoverId}
               photos={photos}
             />
           </MapContainer>
           {(photos && photos.length) &&
             <ListContainer>
-              {
-                photos.map((photo) => (
-                  <div key={photo.id}>
-                    <div>{photo.name}</div>
-                    <div><img src={photo.image_url} /></div>
-                  </div>
-                ))
-              }
+              <PhotoList
+                photos={photos}
+                toggleHoverPhotoList={this._toggleHoverPhotoList}
+                markerHoverPhotoId={markerHoverPhotoId}
+              />
             </ListContainer>
           }
         </ComponentContainer>

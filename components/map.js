@@ -1,31 +1,24 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import GoogleMap from 'google-map-react';
-import styled from 'styled-components';
 
 import getRadius from '../helper/getRadius';
-
-const Marker = styled.div`
-  background-color: green;
-  width: 100px;
-`;
+import Marker from '../components/marker';
 
 export default class Map extends PureComponent {
   static propTypes = {
     center: PropTypes.any,
     zoom: PropTypes.number,
-    visibleRowFirst: PropTypes.number,
-    visibleRowLast: PropTypes.number,
     hoveredRowIndex: PropTypes.number,
     onBoundsChange: PropTypes.func.isRequired,
+    toggleHoverPhotoMarker: PropTypes.func.isRequired,
+    photoListHoverId: PropTypes.number,
     photos: PropTypes.array
   }
 
   static defaultProps = {
     center: [59.744465, 30.042834],
     zoom: 10,
-    visibleRowFirst: -1,
-    visibleRowLast: -1,
     hoveredRowIndex: -1
   }
 
@@ -41,14 +34,6 @@ export default class Map extends PureComponent {
 
     const radius = getRadius({ center: centerFunctions, ne });
     this.props.onBoundsChange(center, radius);
-
-    // this.props.onBoundsChange()
-    // if (this.props.onBoundsChange) {
-    //   this.props.onBoundsChange({center, zoom, bounds, marginBounds});
-    // } else {
-    //   this.props.onCenterChange(center);
-    //   this.props.onZoomChange(zoom);
-    // }
   }
 
   _onGoogleApiLoaded = ({ map }) => {
@@ -63,12 +48,17 @@ export default class Map extends PureComponent {
   }
 
   render() {
-    const { center, zoom, photos } = this.props;
+    const { center, zoom, photos, toggleHoverPhotoMarker, photoListHoverId } = this.props;
     const photoMarkers = photos.map((photo) => {
       return (
-        <Marker key={photo.id} lat={photo.latitude} lng={photo.longitude}>
-          {photo.name}
-        </Marker>
+        <Marker
+          key={photo.id}
+          isHover={photo.id === photoListHoverId}
+          toggleHoverPhotoMarker={toggleHoverPhotoMarker}
+          photo={photo}
+          lat={photo.latitude}
+          lng={photo.longitude}
+        />
       );
     });
 
@@ -80,7 +70,7 @@ export default class Map extends PureComponent {
         bootstrapURLKeys={{ libraries: 'geometry' }}
         onGoogleApiLoaded={this._onGoogleApiLoaded}
       >
-        {photoMarkers}
+        {(photoMarkers && photoMarkers.length) && photoMarkers}
       </GoogleMap>
     );
   }
