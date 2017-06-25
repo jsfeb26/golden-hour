@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
 import styled from 'styled-components';
+import get from 'lodash.get';
 
 import Map from '../components/map';
 import PhotoList from '../components/photo-list';
@@ -12,7 +13,7 @@ const PageContainer = styled.div`
   height: 100vh;
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
   color: red;
   font-size: 50px;
 `;
@@ -45,7 +46,13 @@ class Search extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { photos: [], photoListHoverId: 0, markerHoverPhotoId: 0 };
+    this.state = {
+      photos: [],
+      photoListHoverId: 0,
+      markerHoverPhotoId: 0,
+      centerLat: 40.735998,
+      centerLng: -73.951323
+    };
   }
 
   _onBoundsChange = async (center, radius) => {
@@ -68,12 +75,21 @@ class Search extends Component {
     this.setState(() => ({ markerHoverPhotoId: photoId }));
   }
 
+  _onSearch = async () => {
+    const url = endpoints.GEOCODE('San Diego');
+    const res = await fetch(url);
+    const json = await res.json();
+
+    const location = get(json, 'results[0].geometry.location') || {};
+    this.setState(() => ({ centerLat: location.lat, centerLng: location.lng }))
+  }
+
   render() {
-    const { photos, photoListHoverId, markerHoverPhotoId } = this.state;
+    const { photos, photoListHoverId, markerHoverPhotoId, centerLat, centerLng } = this.state;
 
     return (
       <PageContainer>
-        <Title>Search</Title>
+        <Title onClick={this._onSearch}>Search</Title>
         <ComponentContainer>
           <MapContainer>
             <Map
@@ -81,6 +97,7 @@ class Search extends Component {
               toggleHoverPhotoMarker={this._toggleHoverPhotoMarker}
               photoListHoverId={photoListHoverId}
               photos={photos}
+              center={[centerLat, centerLng]}
             />
           </MapContainer>
           {(photos && photos.length) &&

@@ -9,7 +9,6 @@ export default class Map extends PureComponent {
   static propTypes = {
     center: PropTypes.any,
     zoom: PropTypes.number,
-    hoveredRowIndex: PropTypes.number,
     onBoundsChange: PropTypes.func.isRequired,
     toggleHoverPhotoMarker: PropTypes.func.isRequired,
     photoListHoverId: PropTypes.number,
@@ -17,9 +16,7 @@ export default class Map extends PureComponent {
   }
 
   static defaultProps = {
-    center: [59.744465, 30.042834],
-    zoom: 10,
-    hoveredRowIndex: -1
+    zoom: 10
   }
 
   _onBoundsChange = ({ bounds, center, marginBounds, size, zoom }) => {
