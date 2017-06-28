@@ -16,7 +16,7 @@
 
 ### To Run in development
 ```
-git clone https://github.com/Hackbit/reactriot2017-goldenhour.git
+git clone https://github.com/jsfeb26/golden-hour.git
 cd reactriot2017-goldenhour
 yarn install
 ```
